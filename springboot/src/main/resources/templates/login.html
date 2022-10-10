@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="utf-8">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ 
+ <style type="text/css">
+ .form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-container form {
+    width: '25%'; 
+}
+
+table.striped tr {
+    border-bottom: none;
+    background-color: rgba(158, 154, 154, 0.5);
+}
+input[type="submit"] {
+    border: 0;
+    font-style: normal;
+    font-size: inherit;
+    text-transform: inherit;
+    background: none;
+    color: white;
+}
+.waves-input-wrapper {
+    border-radius: 0.2em;
+    vertical-align: bottom;
+    background: #1362a2;
+}
+
+[type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: button;
+    background: #1362a2;
+}
+.waves-efects{
+	background: #1362a2
+}
+#delete{
+	color: red;
+}
+#lista{
+	background: white;
+	color: black;
+}
+.btn:hover, .btn-large:hover, .btn-small:hover {
+    background-color: #a4cf4f;
+}
+#msg {
+color:red;}
+
+
+</style>
+
+<title>isaiasdev</title>
+
+</head>
+<body>
+
+
+
+<div class="form-container">
+      <form th:action="@{/login}" method = "post">
+		
+		
+		<h1 class="center">Login</h1>
+
+		<label>Login</label>
+		<input type="email" name="username" placeholder="Email">
+
+		<label>Senha</label>
+		<input type="password" name="password" placeholder="Senha">
+	
+		<a href="esquecisenha">Esqueci Senha</a>
+		<input name="Logar" type="submit" value="Logar"
+				 class="waves-effect waves-light btn" />
+				 
+				
+</form>
+		
+        </div>
+
+
+    
+
+    
+    
+
+        
+
+
+
+
+</body>
+</html>

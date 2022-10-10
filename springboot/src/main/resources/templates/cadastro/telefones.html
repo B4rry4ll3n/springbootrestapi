@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="utf-8">
+<title>Cadastro</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+<style type="text/css">
+.grey-text.text-lighten-3 {
+    color: #eee !important;
+    /* font-size: 20px; */
+    align-items: self-end;
+    display: inline-flex;
+}
+
+.page-footer {
+    padding-top: 20px;
+    color: #fff;
+    background-color: #61b5dd;
+}
+table.striped tr {
+    border-bottom: none;
+    background-color: rgba(158, 154, 154, 0.5);
+}
+input[type="submit"] {
+    border: 0;
+    font-style: normal;
+    font-size: inherit;
+    text-transform: inherit;
+    background: none;
+    color: white;
+}
+.waves-input-wrapper {
+    border-radius: 0.2em;
+    vertical-align: bottom;
+    background: #1362a2;
+}
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    -webkit-transition: .3s ease-out;
+    transition: .3s ease-out;
+    background: #1362a2;
+}
+.btn:hover, .btn-large:hover, .btn-small:hover {
+    background-color: #a4cf4f;
+}
+#msg{
+color:red;
+
+}
+#delete{
+	color: red;
+}
+nav .nav-wrapper {
+    position: relative;
+    height: 100%;
+    background: #61b5dd;
+}
+</style>
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+<h3 class="center-align">DADOS DO USUARIO</h3>
+<a href="/cadastropessoa" class="waves-effect waves-light btn"><i class="material-icons">first_page</i></a>
+<div th:each="p : ${pessoaobj}">
+	<div class="row">
+	<div class="input=field col s12">
+		
+		<div class="input=field col s6">
+		<h5>Nome</h5>
+		<p><span th:text ="${p.nome}"></span></p>
+		</div>
+		
+		<div class="input=field col s6">
+		<h5>Sobrenome</h5>
+		<p><span th:text ="${p.sobrenome}"></span></p>
+		</div>
+		
+		<div class="input=field col s6">
+		<h5>Dia do Vencimento</h5>
+		<p><span th:text ="${p.diaDoVencimento}"></span></p>
+		</div>
+		
+		<div class="input=field col s6">
+		<h5>Cep</h5>
+		<p><span th:text ="${p.cep}"></span></p>
+		</div>
+		
+	
+		<div class="input=field col s6">
+		<h5>Cidade</h5>
+		<p><span th:text ="${p.cidade}"></span></p>
+		</div>
+		
+		
+				
+	
+		<div class="input=field col s6">
+		<h5>Bairro</h5>
+		<p><span th:text ="${p.bairro}"></span></p>
+		</div>
+		
+	
+		<div class="input=field col s6">
+		<h5>Rua</h5>
+		<p><span th:text ="${p.rua}"></span></p>
+		</div>
+		
+		<div class="input=field col s6">
+		<h5>UF</h5>
+		<p><span th:text ="${p.uf}"></span></p>
+		</div>
+		
+		<div class="input=field col s6">
+		<h5>Número</h5>
+		<p><span th:text ="${p.numero}"></span></p>
+		</div>
+		
+		</div>
+	</div>
+</div>
+
+<h5 class="center-align">Contatos</h5>
+<br/>
+
+<div th:each = "m : ${msg}" id="msg" class="center-align">
+	<span th:text = ${m}></span>
+</div>
+<br/>
+<div class="row">
+	<form th:action="@{/addcontatos/{pessoaid}(pessoaid=${pessoaobj.id})}" method="post" class="col s12"  onsubmit="validarCampos()? true : false">
+		<div class="row">
+			<div class="input-field col s6">
+				<label class="active" for="tipo">Tipo</label>
+				<input id="tipo" name="tipo" class="validate">
+			</div>
+			
+			<div class="input-field col s6">
+				<label class="active" for="numero">Contato</label>
+				<input id="numero" name="numero" class="validate">
+			</div>
+		</div>
+		<input type="submit" value="Adicionar Contato" class="waves-effect waves-light btn">
+		
+	</form>
+	<br/>
+	<br/>
+	<table class="striped">
+	   	<tr th:each="fone : ${telefones}">
+	      	<td th:text="${fone.tipo}"/>
+	      	<td th:text="${fone.numero}"/>
+	      	<td><a th:href="@{/removertelefone/{idtelefone}(idtelefone=${fone.id})}"><i class="material-icons" id="delete">delete</i></a></td>
+	   </tr>
+	 </table>
+ 
+</div>
+
+<script type="text/javascript">
+function validarCampos(){
+	  numero = document.getElementById('numero').value;
+	  tipo = document.getElementById('tipo').value;
+	  
+	  if (numero === ''){
+		  alert('Contato deve ser informado');
+		  return false;
+	  }
+	  else if (tipo === '') {
+		  alert('Tipo deve ser informado');
+		  return false;
+	  }
+	  
+	  return true;
+}
+</script>
+
+           <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Isaias Junior</h5>
+                <p class="grey-text text-lighten-4">Olá, sou o Isaias Junior e desenvolvi esse site!</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Contatos</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://api.whatsapp.com/send?phone=5511942433340"><img alt="" src="imagens/whatsapp.png" style="max-width:20px;">WhatsApp</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/isaiasjunior99905"><img alt="" src="imagens/linkedin.png" style="max-width:20px;">Linkedin</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/B4rry4ll3n"><img alt="" src="imagens/github.png" style="max-width:20px;">GitHub</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/isaias_barry1/"><img alt="" src="imagens/instagram.png" style="max-width:20px;">Instagram</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2022 Copyright Isaias Junior
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+        
+</body>
+</html>

@@ -1,0 +1,123 @@
+package br.com.springboot.springboot.model;
+
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.UniqueConstraint;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+
+
+@Entity
+public class Usuario implements UserDetails {
+	
+
+	private static final long serialVersionUID = 1L;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name ="cargos_usuarios",
+	uniqueConstraints =
+	@UniqueConstraint(columnNames = { "usuario_id", "cargos_id" },
+	name = "unique_role_user"),
+	joinColumns = @JoinColumn(name="usuario_id",
+	referencedColumnName = "id",
+	table = "usuario"), 
+	inverseJoinColumns = @JoinColumn(name = "cargos_id", 
+	referencedColumnName = "id",
+	table = "cargos"))
+	
+	private List<RegrasCargo> cargos;
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	
+	private String login;
+	private String senha;
+	
+	
+	public List<RegrasCargo> getCargos() {
+		return cargos;
+	}
+
+	public void setCargos(List<RegrasCargo> cargos) {
+		this.cargos = cargos;
+	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return cargos;
+	}
+
+	@Override
+	public String getPassword() {
+		return senha;
+	}
+
+	@Override
+	public String getUsername() {
+		return login;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+
+}

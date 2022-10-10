@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="utf-8">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   
+   
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<title>isaiasdev</title>
+</head>
+
+<style>
+.grey-text.text-lighten-3 {
+    color: #eee !important;
+    /* font-size: 20px; */
+    align-items: self-end;
+    display: inline-flex;
+}
+nav .nav-wrapper {
+    position: relative;
+    background: #61b5dd;
+    height: 100%;
+}
+.page-footer {
+    padding-top: 20px;
+    color: #fff;
+    background-color: #61b5dd;
+}
+
+element.style {
+    color: white;
+    font-family: Arial;
+}
+
+nav .nav-wrapper {
+    position: relative;
+    height: 100%;
+    background-color: #61b5dd;
+}
+</style>
+<body>
+<header>
+	<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="/login">Entrar</a></li>
+   <li class="divider"></li>
+  <li><a href="#!">Sobre nós</a></li>
+</ul>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Your Tag</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="sass.html">Produtos</a></li>
+      <li><a href="badges.html">Planos</a></li>
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">menu</i></a></li>
+    </ul>
+  </div>
+</nav>
+</header>
+
+    <div class="parallax-container">
+      <div class="parallax"><img th:src="@{/imagens/tecnologia.jpg}"/> </div>
+    </div>
+    
+    <div class="section white">
+    
+     <div class="row">
+    <div class="col s12 m7" style=" max-width:300px">
+      <div class="card" style=" max-width:300px">
+        <div class="card-image" style=" max-width:300px">
+        
+          <img th:src="@{/imagens/tecnologia.jpg}" style=" max-width:300px">
+          <span class="card-title">Your name here</span>
+        </div>
+        <div class="card-content">
+          <p >I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+      <div class="col s12 m5">
+  	<br>
+  	<br>
+  	<p class="caption">
+             The Medium Card limits the height of the card to 400px.
+            </p>
+  </div>
+  </div>
+
+
+    </div>
+    <div class="parallax-container">
+      <div class="parallax"><img th:src="@{/imagens/tecnologia.jpg}" style="opacity: 1; transform: translate3d(-50%, 283.229px, 0px); max-width:500px"/> </div>
+    </div>
+
+<div class="section white">
+    
+     <div class="row">
+    <div class="col s12 m7" style=" max-width:300px">
+      <div class="card" style=" max-width:300px">
+        <div class="card-image" style=" max-width:300px">
+        
+         <img th:src="@{/imagens/tecnologia.jpg}" style=" max-width:300px">>
+          <span class="card-title">Card Title</span>
+        </div>
+        <div class="card-content">
+          <p >I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+        <div class="card-action">
+          <a href="#">This is a link</a>
+        </div>
+      </div>
+    </div>
+      <div class="col s12 m5">
+  	<br>
+  	<br>
+  	<p class="caption">
+             The Medium Card limits the height of the card to 400px.
+            </p>
+  </div>
+  </div>
+
+
+    </div>
+    
+    
+ 
+    <div class="parallax-container">
+      <div class="parallax"><img th:src="@{/imagens/tecnologia.jpg}" style="opacity: 1; transform: translate3d(-50%, 283.229px, 0px); max-width:500px"/> </div>
+    </div>
+
+            <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Isaias Junior</h5>
+                <p class="grey-text text-lighten-4">Olá, sou o Isaias Junior e desenvolvi esse site!</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Contatos</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://api.whatsapp.com/send?phone=5511942433340"><img alt="" src="imagens/whatsapp.png" style="max-width:20px;">WhatsApp</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/isaiasjunior99905"><img alt="" src="imagens/linkedin.png" style="max-width:20px;">Linkedin</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/B4rry4ll3n"><img alt="" src="imagens/github.png" style="max-width:20px;">GitHub</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/isaias_barry1/"><img alt="" src="imagens/instagram.png" style="max-width:20px;">Instagram</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2022 Copyright Isaias Junior
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+        
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('.parallax').parallax();
+  });
+    
+$(".dropdown-trigger").dropdown();
+</script>
+</body>
+</html>

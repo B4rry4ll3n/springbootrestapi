@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<meta charset="utf-8">
+<title>Cadastro</title>
+<!-- Adicionando JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    
+<style type="text/css">
+.grey-text.text-lighten-3 {
+    color: #eee !important;
+    /* font-size: 20px; */
+    align-items: self-end;
+    display: inline-flex;
+}
+.page-footer {
+    padding-top: 20px;
+    color: #fff;
+    background-color: #61b5dd;
+}
+  body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+table.striped tr {
+    border-bottom: none;
+    background-color: rgba(158, 154, 154, 0.5);
+}
+input[type="submit"] {
+    border: 0;
+    font-style: normal;
+    font-size: inherit;
+    text-transform: inherit;
+    background: none;
+    color: white;
+}
+.waves-input-wrapper {
+    border-radius: 0.2em;
+    vertical-align: bottom;
+    background: #1362a2;
+}
+[type="button"], [type="reset"], [type="submit"] {
+    -webkit-appearance: button;
+    background: #1362a2;
+}
+.waves-efects{
+	background: #1362a2
+}
+#delete{
+	color: red;
+}
+#lista{
+	background: white;
+	color: black;
+}
+.btn:hover, .btn-large:hover, .btn-small:hover {
+    background-color: #a4cf4f;
+}
+#msg {
+color:red;}
+
+.page-footer {
+    padding-top: 20px;
+    color: #fff;
+    background-color: #61b5dd;
+}
+
+nav .nav-wrapper {
+    position: relative;
+    background: #61b5dd;
+    height: 100%;
+}
+
+</style>
+</head>
+<header>
+	<!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li class="divider"></li>
+  <li><a href="/logout">Logout</a></li>
+</ul>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Tecnology</a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="sass.html">Produtos</a></li>
+      <li><a href="badges.html">Planos</a></li>
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">menu</i></a></li>
+    </ul>
+  </div>
+</nav>
+</header>
+<body>
+ 
+<h3 class="center-align">Tecnology</h3><br/>
+
+<br/>
+
+<div th:each = "m : ${msg}" id="msg" class="center-align">
+	<span th:text = ${m}></span>
+</div>
+<br/>
+<fieldset>
+<legend>Cadastro de Cliente</legend>
+<div class="row">
+		<form action="salvarpessoa" method="post" th:object="${pessoaobj}"
+			class="col s12" id="formsalvarpessoa">
+			
+			<div class="row">
+
+
+				<div class="input=field col s6">
+					<label for="nome" class="active">Nome</label>
+					 <input name="nome"	
+					 th:field="*{nome}" id="nome" class="validate">
+				</div>
+				
+				<div class="input=field col s6">
+					<label class="active" for="sobrenome">Sobrenome</label>
+					 <input name="sobrenome"
+					  th:field="*{sobrenome}" id="sobrenome" class="validate">
+				</div>
+				
+
+				
+				<div class="input=field col s6" >  <!-- sec:authorize="hasAnyRole('ROLE_FUNCIONARIO','ROLE_USUARIO')" -->
+						<label for="diaDoVencimento" class="active">Dia do Vencimento:</label>
+						<input name="diaDoVencimento" 
+						th:field="*{diaDoVencimento}" id="diaDoVencimento" class="validate">
+				</div>
+				
+				<div class="input=field col s6">
+					<label for="cep" class="active">Cep</label>
+					 <input name="cep"
+					  th:field="*{cep}" id="cep">
+				</div>
+				
+				<div class="input=field col s6">
+					<label for="rua" class="active">Rua</label>
+					 <input name="rua"
+					  th:field="*{rua}" id="rua">
+				</div>
+				
+				<div class="input=field col s6">
+					<label for="bairro" class="active">Bairro</label>
+					 <input name="bairro" th:field="*{bairro}" id="bairro">
+				</div>
+				
+				<div class="input=field col s6">
+					<label for="cidade" class="active">Cidade</label>
+					 <input name="cidade" th:field="*{cidade}" id="cidade">
+				</div>
+				
+				<div class="input=field col s6">
+					<label for="uf" class="active">UF</label>
+					 <input name="uf" th:field="*{uf}" id="uf">
+				</div>
+				
+				<div class="input=field col s6">
+					<label for="numero" class="active">Número</label>
+					 <input name="numero" th:field="*{numero}" id="numero">
+				</div>
+			
+				<div class="input=field col s6">
+					<label for="nomeCachorro" class="active">Nome do Cachorro</label>
+					 <input name="nomeCachorro" th:field="*{nomeCachorro}" id="nomeCachorro">
+				</div>
+				
+				<div class="input=field col s6">
+
+					<label for="porteCachorro" class="active">Porte do Cachorro</label>
+    	<select name="porteCachorro" th:field="*{porteCachorro}" id="porteCachorro">
+		        <option select disable value="Selecione"></option>
+		        <option value = "pequeno">Pequeno</option>
+		        <option value = "medio">Médio</option>
+		        <option value = "medio">Grande</option>
+    	</select>
+				</div>
+				
+
+				
+				<div class="input=field col s6">
+					<label for="racaCachorro" class="active">Raça do Cachorro</label>
+					 <input name="racaCachorro" th:field="*{racaCachorro}" id="racaCachorro">
+					 
+				</div>	
+			</div>
+
+			<div class="row">
+				<div class="input=field col s12">
+				<input type="submit" value="Salvar"
+				class="waves-effect waves-light btn">
+				
+				<button type="button" class="waves-effect waves-light btn" onclick="document.getElementById('formsalvarpessoa').reset();">Limpar Campos</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	</fieldset>
+	<br>
+	<br>
+	
+<fieldset>
+<legend>Campo de Pesquisa</legend>
+<div class="row">
+<form action="pesquisarpessoa" method="post" class="col s12">
+	<div class="row">
+		<div class="input-field col s6">
+			<label class="active" for="nomepesquisa">Pesquisar Responsável</label>
+			<input name="nomepesquisa" id="nomepesquisa" class="validate"
+			 th:value="${nomepesquisa}">
+		
+		<input type="submit" value="Buscar" class="waves-effect waves-light btn">
+				<a href="/listapessoas" class="waves-effect waves-light btn" id="lista"><i class="material-icons">cached</i></a>
+		</div>	
+		</div>
+		
+				
+</form>
+</div>
+</fieldset>
+<br/>
+<br/>
+
+<fieldset>
+<legend>Clientes Cadastrados</legend>
+	<table class="centered">
+	<thead>
+		<tr>
+		<th class="card-panel hoverable">ID</th>
+		<th class="card-panel hoverable">Nome</th>
+		<th class="card-panel hoverable">Sobrenome</th>
+		<th class="card-panel hoverable">Dia do vencimento</th>
+		<th class="card-panel hoverable">Editar</th>
+		<th class="card-panel hoverable">Excluir</th>
+		</tr>
+	</thead>
+		<tr th:each="pessoa : ${pessoas.content}" >
+		<td th:text="${pessoa.id}"></td >
+		<td><a th:href="@{/telefones/{idpessoa}(idpessoa=${pessoa.id})}"><span th:text="${pessoa.nome}"></span></a></td>
+		<td th:text="${pessoa.sobrenome}"></td>
+		<td th:text="${pessoa.diaDoVencimento}"></td>
+		<td><a th:href="@{/editar/{idpessoa}(idpessoa=${pessoa.id})}"><i class="material-icons">edit</i></a></td>
+		<td><a th:href="@{/remover/{idpessoa}(idpessoa=${pessoa.id})}"><i class="material-icons" id="delete">delete</i></a></td>
+		</tr>
+	</table>
+	
+	<div class="row" style="margin-top: 30px;">
+ 	<center>
+ 
+     <span th:if="${pessoas.hasPrevious()}">
+         <a th:href="@{/pessoaspag(page=${pessoas.number-1}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">Anterior</a>
+     </span>
+ 
+    <th:block th:each="i: ${#numbers.sequence(0, pessoas.totalPages - 1)}"> 
+            <a th:href="@{/pessoaspag(page=${i}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">[[ ${i} + 1 ]]</a>
+    </th:block>
+    
+    <span th:if="${pessoas.hasNext()}">
+         <a th:href="@{/pessoaspag(page=${pessoas.number+1}, size=${pessoas.size}, nomepesquisa=${nomepesquisa})}">Próximo</a>
+     </span>
+    
+ </center>
+</div>
+
+</fieldset>
+
+<br>
+<br>
+<br>
+<br>
+
+    <script>
+   
+    $(".dropdown-trigger").dropdown();
+
+        $(document).ready(function() {
+
+            function limpa_formulário_cep() {
+                // Limpa valores do formulário de cep.
+                $("#rua").val("");
+                $("#bairro").val("");
+                $("#cidade").val("");
+                $("#uf").val("");
+                $("#ibge").val("");
+            }
+            
+            //Quando o campo cep perde o foco.
+            $("#cep").blur(function() {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if(validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#rua").val("...");
+                        $("#bairro").val("...");
+                        $("#cidade").val("...");
+                        $("#uf").val("...");
+                        $("#ibge").val("...");
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#rua").val(dados.logradouro);
+                                $("#bairro").val(dados.bairro);
+                                $("#cidade").val(dados.localidade);
+                                $("#uf").val(dados.uf);
+                                $("#ibge").val(dados.ibge);
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            });
+        });
+        
+        $(document).ready(function(){
+            $('select').formSelect();
+          });
+
+    </script>
+    
+            <footer class="page-footer">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Isaias Junior</h5>
+                <p class="grey-text text-lighten-4">Olá, sou o Isaias Junior e desenvolvi esse site!</p>
+              </div>
+              <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Contatos</h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href="https://api.whatsapp.com/send?phone=5511942433340"><img alt="" src="imagens/whatsapp.png" style="max-width:20px;">WhatsApp</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/isaiasjunior99905"><img alt="" src="imagens/linkedin.png" style="max-width:20px;">Linkedin</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://github.com/B4rry4ll3n"><img alt="" src="imagens/github.png" style="max-width:20px;">GitHub</a></li>
+                  <li><a class="grey-text text-lighten-3" href="https://www.instagram.com/isaias_barry1/"><img alt="" src="imagens/instagram.png" style="max-width:20px;">Instagram</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            © 2022 Copyright Isaias Junior
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+        </footer>
+
+        
+</body>
+</html>
